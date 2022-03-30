@@ -12,7 +12,7 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile.nginx
-    image: "defectdojo/defectdojo-nginx:${NGINX_VERSION:-latest}"
+    image: "asia.gcr.io/test-container-registry-287610/defectdojo-nginx:${DJANGO_VERSION:-latest}"
     profiles: 
       - mysql-rabbitmq
       - mysql-redis
@@ -38,7 +38,7 @@ services:
       context: ./
       dockerfile: Dockerfile.django
       target: django
-    image: "defectdojo/defectdojo-django:${DJANGO_VERSION:-latest}"
+    image: "asia.gcr.io/test-container-registry-287610/defectdojo-django:${DJANGO_VERSION:-latest}"
     profiles: 
       - mysql-rabbitmq
       - mysql-redis
@@ -62,7 +62,7 @@ services:
           target: /app/docker/extra_settings
         - "defectdojo_media:${DD_MEDIA_ROOT:-/app/media}"
   celerybeat:
-    image: "defectdojo/defectdojo-django:${DJANGO_VERSION:-latest}"
+    image: "asia.gcr.io/test-container-registry-287610/defectdojo-django:${DJANGO_VERSION:-latest}"
     profiles: 
       - mysql-rabbitmq
       - mysql-redis
@@ -83,7 +83,7 @@ services:
           source: ./docker/extra_settings
           target: /app/docker/extra_settings
   celeryworker:
-    image: "defectdojo/defectdojo-django:${DJANGO_VERSION:-latest}"
+    image: "asia.gcr.io/test-container-registry-287610/defectdojo-django:${DJANGO_VERSION:-latest}"
     profiles: 
       - mysql-rabbitmq
       - mysql-redis
@@ -106,7 +106,7 @@ services:
           target: /app/docker/extra_settings
         - "defectdojo_media:${DD_MEDIA_ROOT:-/app/media}"
   initializer:
-    image: "defectdojo/defectdojo-django:${DJANGO_VERSION:-latest}"
+    image: "asia.gcr.io/test-container-registry-287610/defectdojo-django:${DJANGO_VERSION:-latest}"
     profiles: 
       - mysql-rabbitmq
       - mysql-redis
