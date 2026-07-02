@@ -1,0 +1,14 @@
+name: Setup Aikido Safe Chain
+description: |
+  Install @aikidosec/safe-chain for CI so npm-based tools and supported Python
+  package managers are proxied. Requires packages to be at least 7 days old
+  before install (npm ecosystem only).
+runs:
+  using: composite
+  steps:
+    - name: Install safe-chain (CI)
+      shell: bash
+      run: |
+        set -euo pipefail
+        echo "SAFE_CHAIN_MINIMUM_PACKAGE_AGE_HOURS=168" >> "${GITHUB_ENV}"
+        curl -fsSL https://github.com/AikidoSec/safe-chain/releases/latest/download/install-safe-chain.sh | sh -s -- --ci
